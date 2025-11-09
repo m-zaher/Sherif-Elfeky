@@ -4,165 +4,720 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sherif Elfeky - Professional CV</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  * {
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f4f7fb;
+    box-sizing: border-box;
   }
+
+  :root {
+    --primary-blue: #1e3a8a;
+    --secondary-blue: #3b82f6;
+    --light-blue: #dbeafe;
+    --dark-blue: #0f172a;
+    --accent-blue: #60a5fa;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --background: #f8fafc;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px;
+  }
+
   .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     display: grid;
-    grid-template-columns: 30% 70%;
-    max-width: 1100px;
-    margin: 30px auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    grid-template-columns: 350px 1fr;
+    min-height: 100vh;
   }
+
+  /* Sidebar Styles */
   .sidebar {
-    background-color: #0b3d91;
-    color: white;
-    padding: 30px 20px;
+    background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    color: var(--white);
+    padding: 40px 30px;
+    position: relative;
   }
-  .sidebar img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    display: block;
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0 0 50% 50%;
+  }
+
+  .profile-section {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .profile-img-wrapper {
+    width: 160px;
+    height: 160px;
     margin: 0 auto 20px;
-    border: 3px solid white;
+    position: relative;
+    animation: fadeInDown 0.8s ease-out;
   }
-  .sidebar h2 {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 5px;
+
+  .profile-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--accent-blue), var(--secondary-blue));
+    animation: rotate 3s linear infinite;
+    z-index: -1;
   }
-  .sidebar p.title {
-    text-align: center;
-    font-size: 13px;
-    color: #a8c0ff;
-    margin-bottom: 30px;
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
-  .section-title {
-    border-bottom: 2px solid #a8c0ff;
-    margin-top: 20px;
+
+  .profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid var(--white);
+    object-fit: cover;
+    display: block;
+  }
+
+  .profile-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  }
+
+  .profile-title {
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--light-blue);
+    font-weight: 400;
+    line-height: 1.4;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
   }
+
+  .sidebar-section {
+    margin-bottom: 35px;
+    animation: fadeInLeft 0.8s ease-out backwards;
+  }
+
+  .sidebar-section:nth-child(2) { animation-delay: 0.3s; }
+  .sidebar-section:nth-child(3) { animation-delay: 0.4s; }
+  .sidebar-section:nth-child(4) { animation-delay: 0.5s; }
+  .sidebar-section:nth-child(5) { animation-delay: 0.6s; }
+  .sidebar-section:nth-child(6) { animation-delay: 0.7s; }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title i {
+    font-size: 18px;
+    color: var(--accent-blue);
+  }
+
   .sidebar ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
   }
+
   .sidebar li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .sidebar li i {
+    color: var(--accent-blue);
+    margin-top: 3px;
+    font-size: 16px;
+    min-width: 20px;
+  }
+
+  .contact-item a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-item a:hover {
+    color: var(--accent-blue);
+  }
+
+  .education-item small,
+  .cert-item {
+    display: block;
+    margin-top: 5px;
+    color: var(--light-blue);
+    font-size: 12px;
+  }
+
+  .skill-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 5px;
     font-size: 13px;
-    margin: 8px 0;
+    transition: all 0.3s ease;
   }
+
+  .skill-item:hover {
+    background: var(--accent-blue);
+    transform: translateY(-2px);
+  }
+
+  /* Content Styles */
   .content {
-    padding: 40px 50px;
+    padding: 50px 60px;
+    background: var(--white);
+    animation: fadeIn 1s ease-out;
   }
+
+  .content-header {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid var(--light-blue);
+  }
+
   .content h1 {
-    color: #0b3d91;
+    color: var(--primary-blue);
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+
+  .summary {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  .content-section {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+
+  .content-section:nth-child(2) { animation-delay: 0.2s; }
+
+  .content h2 {
+    color: var(--primary-blue);
+    font-size: 28px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+  }
+
+  .content h2::before {
+    content: '';
+    width: 5px;
+    height: 35px;
+    background: linear-gradient(180deg, var(--secondary-blue), var(--accent-blue));
+    border-radius: 3px;
+  }
+
+  .experience-item {
+    margin-bottom: 30px;
+    padding-left: 30px;
+    border-left: 3px solid var(--light-blue);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .experience-item::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 5px;
+    width: 13px;
+    height: 13px;
+    background: var(--secondary-blue);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--secondary-blue);
+  }
+
+  .experience-item:hover {
+    border-left-color: var(--secondary-blue);
+  }
+
+  .job-header {
+    margin-bottom: 15px;
+  }
+
+  .job-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-blue);
     margin-bottom: 5px;
   }
-  .content h3 {
-    color: #0b3d91;
-    margin-top: 30px;
+
+  .job-meta {
+    font-size: 14px;
+    color: var(--text-light);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
   }
-  .content ul {
-    margin: 5px 0 15px 20px;
+
+  .job-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .job-meta i {
+    color: var(--secondary-blue);
+  }
+
+  .responsibilities {
+    list-style: none;
+    margin-top: 15px;
+  }
+
+  .responsibilities li {
+    padding-left: 25px;
+    margin-bottom: 10px;
+    position: relative;
+    color: var(--text-dark);
+    font-size: 15px;
+  }
+
+  .responsibilities li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-blue);
+    font-size: 20px;
+  }
+
+  /* Print Button */
+  .print-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+    color: var(--white);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .print-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(30, 58, 138, 0.5);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .container {
+      grid-template-columns: 300px 1fr;
+    }
+
+    .content {
+      padding: 40px 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+
+    .container {
+      grid-template-columns: 1fr;
+      border-radius: 10px;
+    }
+
+    .sidebar {
+      padding: 30px 20px;
+    }
+
+    .content {
+      padding: 30px 25px;
+    }
+
+    .content h1 {
+      font-size: 28px;
+    }
+
+    .content h2 {
+      font-size: 24px;
+    }
+
+    .profile-name {
+      font-size: 24px;
+    }
+
+    .print-button {
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content h1 {
+      font-size: 24px;
+    }
+
+    .content h2 {
+      font-size: 20px;
+    }
+
+    .job-title {
+      font-size: 18px;
+    }
+
+    .job-meta {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+
+  /* Print Styles - A4 Format */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+      display: block;
+      page-break-after: always;
+    }
+
+    .sidebar {
+      width: 100%;
+      float: left;
+      width: 35%;
+      min-height: 297mm;
+      page-break-inside: avoid;
+    }
+
+    .content {
+      width: 65%;
+      float: left;
+      page-break-inside: avoid;
+    }
+
+    .print-button {
+      display: none;
+    }
+
+    .profile-img-wrapper::before {
+      animation: none;
+    }
+
+    .experience-item {
+      page-break-inside: avoid;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    /* Remove animations for print */
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 </style>
 </head>
 <body>
 <div class="container">
+  <!-- Sidebar -->
   <div class="sidebar">
-    <img src="shrief.png" alt="Sherif Elfeky" />
-    <h2>Sherif Elfeky</h2>
-    <p class="title">Head of Service Operations & Business Support</p>
+    <div class="profile-section">
+      <div class="profile-img-wrapper">
+        <img src="shrief.png" alt="Sherif Elfeky" class="profile-img" />
+      </div>
+      <h1 class="profile-name">Sherif Elfeky</h1>
+      <p class="profile-title">Head of Service Operations & Business Support</p>
+    </div>
 
-    <h3 class="section-title">Contact</h3>
-    <ul>
-      <li>📍 Cairo, Egypt</li>
-      <li>📞 01000821524</li>
-      <li>✉️ sherifelfeky2018@gmail.com</li>
-      <li>🔗 LinkedIn: [LinkedIn URL]</li>
-    </ul>
+    <div class="sidebar-section">
+      <h3 class="section-title"><i class="fas fa-address-card"></i> Contact</h3>
+      <ul>
+        <li class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Cairo, Egypt</span>
+        </li>
+        <li class="contact-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:01000821524">01000821524</a>
+        </li>
+        <li class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:sherifelfeky2018@gmail.com">sherifelfeky2018@gmail.com</a>
+        </li>
+        <li class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="#" target="_blank">LinkedIn Profile</a>
+        </li>
+      </ul>
+    </div>
 
-    <h3 class="section-title">Education</h3>
-    <ul>
-      <li>MBA – Human Resources<br><small>Arab Academy for Financial, Administrative & Banking Sciences (2019–2021)</small></li>
-      <li>Bachelor of Commerce & Business Administration<br><small>Cairo University (2012)</small></li>
-    </ul>
+    <div class="sidebar-section">
+      <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+      <ul>
+        <li class="education-item">
+          <div>
+            <strong>MBA – Human Resources</strong>
+            <small>Arab Academy for Financial, Administrative & Banking Sciences</small>
+            <small>2019 – 2021</small>
+          </div>
+        </li>
+        <li class="education-item">
+          <div>
+            <strong>Bachelor of Commerce & Business Administration</strong>
+            <small>Cairo University</small>
+            <small>2012</small>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-    <h3 class="section-title">Skills</h3>
-    <ul>
-      <li>Service Operations Management</li>
-      <li>Process Optimization</li>
-      <li>Leadership & Coaching</li>
-      <li>Project Management</li>
-      <li>IT Service Management (ITIL, PMP)</li>
-      <li>Data Analysis (Excel, ERP)</li>
-    </ul>
+    <div class="sidebar-section">
+      <h3 class="section-title"><i class="fas fa-cogs"></i> Skills</h3>
+      <div>
+        <span class="skill-item">Service Operations</span>
+        <span class="skill-item">Process Optimization</span>
+        <span class="skill-item">Leadership</span>
+        <span class="skill-item">Project Management</span>
+        <span class="skill-item">ITIL</span>
+        <span class="skill-item">PMP</span>
+        <span class="skill-item">Data Analysis</span>
+        <span class="skill-item">Excel</span>
+        <span class="skill-item">ERP</span>
+      </div>
+    </div>
 
-    <h3 class="section-title">Languages</h3>
-    <ul>
-      <li>Arabic – Native</li>
-      <li>English – Professional Proficiency</li>
-    </ul>
+    <div class="sidebar-section">
+      <h3 class="section-title"><i class="fas fa-language"></i> Languages</h3>
+      <ul>
+        <li><i class="fas fa-circle"></i> <strong>Arabic</strong> – Native</li>
+        <li><i class="fas fa-circle"></i> <strong>English</strong> – Professional</li>
+      </ul>
+    </div>
 
-    <h3 class="section-title">Certifications</h3>
-    <ul>
-      <li>ITIL V3 Foundation</li>
-      <li>PMP® Prep Course – PMI</li>
-      <li>UPU TRAINPOST Program</li>
-      <li>Advanced Excel – CAPMAS</li>
-      <li>Comprehensive Accountant Diploma</li>
-      <li>N+ Course – Ministry of Defense</li>
-    </ul>
+    <div class="sidebar-section">
+      <h3 class="section-title"><i class="fas fa-certificate"></i> Certifications</h3>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> ITIL V3 Foundation</li>
+        <li><i class="fas fa-check-circle"></i> PMP® Prep Course – PMI</li>
+        <li><i class="fas fa-check-circle"></i> UPU TRAINPOST Program</li>
+        <li><i class="fas fa-check-circle"></i> Advanced Excel – CAPMAS</li>
+        <li><i class="fas fa-check-circle"></i> Comprehensive Accountant</li>
+        <li><i class="fas fa-check-circle"></i> N+ Course – Ministry of Defense</li>
+      </ul>
+    </div>
   </div>
 
+  <!-- Main Content -->
   <div class="content">
-    <h1>Professional Summary</h1>
-    <p>Service Operations Manager with over 15 years of experience in Egypt Post, specializing in operational management, service delivery, and technical support. Proven expertise in improving service quality, leading cross-functional teams, and optimizing business processes. Holds an MBA in Human Resources and extensive certifications in management, IT, and quality improvement.</p>
+    <div class="content-header">
+      <h1>Professional Summary</h1>
+      <p class="summary">
+        Service Operations Manager with over 15 years of experience in Egypt Post, specializing in operational management, service delivery, and technical support. Proven expertise in improving service quality, leading cross-functional teams, and optimizing business processes. Holds an MBA in Human Resources and extensive certifications in management, IT, and quality improvement.
+      </p>
+    </div>
 
-    <h3>Professional Experience</h3>
-    <ul>
-      <li><strong>General Manager of Customer Data Updating & Archiving</strong> | Egypt Post | <em>Nov 2024 – Present</em>
-        <ul>
-          <li>Leading national customer data updating and archiving initiatives across Egypt Post.</li>
-          <li>Overseeing digital transformation processes and ensuring data integrity across systems.</li>
-          <li>Managing cross-departmental coordination to enhance data accuracy and accessibility.</li>
+    <div class="content-section">
+      <h2>Professional Experience</h2>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title">General Manager of Customer Data Updating & Archiving</div>
+          <div class="job-meta">
+            <span><i class="fas fa-building"></i> Egypt Post</span>
+            <span><i class="fas fa-calendar-alt"></i> Nov 2024 – Present</span>
+          </div>
+        </div>
+        <ul class="responsibilities">
+          <li>Leading national customer data updating and archiving initiatives across Egypt Post</li>
+          <li>Overseeing digital transformation processes and ensuring data integrity across systems</li>
+          <li>Managing cross-departmental coordination to enhance data accuracy and accessibility</li>
         </ul>
-      </li>
-      <li><strong>General Manager of Service Support</strong> | Egypt Post | <em>May 2022 – Present</em>
-        <ul>
-          <li>Directed nationwide service operations and support teams.</li>
-          <li>Developed and implemented strategies to enhance operational efficiency and service quality.</li>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title">General Manager of Service Support</div>
+          <div class="job-meta">
+            <span><i class="fas fa-building"></i> Egypt Post</span>
+            <span><i class="fas fa-calendar-alt"></i> May 2022 – Present</span>
+          </div>
+        </div>
+        <ul class="responsibilities">
+          <li>Directed nationwide service operations and support teams</li>
+          <li>Developed and implemented strategies to enhance operational efficiency and service quality</li>
         </ul>
-      </li>
-      <li><strong>Administration Manager</strong> | Egypt Post | <em>May 2021 – May 2022</em>
-        <ul>
-          <li>Managed technical and administrative support teams across multiple regions.</li>
-          <li>Enhanced operational workflows and resource utilization.</li>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title">Administration Manager</div>
+          <div class="job-meta">
+            <span><i class="fas fa-building"></i> Egypt Post</span>
+            <span><i class="fas fa-calendar-alt"></i> May 2021 – May 2022</span>
+          </div>
+        </div>
+        <ul class="responsibilities">
+          <li>Managed technical and administrative support teams across multiple regions</li>
+          <li>Enhanced operational workflows and resource utilization</li>
         </ul>
-      </li>
-      <li><strong>Technical Support Officer</strong> | Egypt Post | <em>Jan 2009 – Apr 2021</em>
-        <ul>
-          <li>Oversaw maintenance and troubleshooting of IT infrastructure.</li>
-          <li>Implemented procedures that improved equipment uptime and reduced incidents.</li>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title">Technical Support Officer</div>
+          <div class="job-meta">
+            <span><i class="fas fa-building"></i> Egypt Post</span>
+            <span><i class="fas fa-calendar-alt"></i> Jan 2009 – Apr 2021</span>
+          </div>
+        </div>
+        <ul class="responsibilities">
+          <li>Oversaw maintenance and troubleshooting of IT infrastructure</li>
+          <li>Implemented procedures that improved equipment uptime and reduced incidents</li>
         </ul>
-      </li>
-      <li><strong>Marketing Specialist</strong> | Egypt Post | <em>Jan 2007 – Dec 2008</em>
-        <ul>
-          <li>Developed marketing and contracting proposals for logistics and postal services.</li>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div class="job-title">Marketing Specialist</div>
+          <div class="job-meta">
+            <span><i class="fas fa-building"></i> Egypt Post</span>
+            <span><i class="fas fa-calendar-alt"></i> Jan 2007 – Dec 2008</span>
+          </div>
+        </div>
+        <ul class="responsibilities">
+          <li>Developed marketing and contracting proposals for logistics and postal services</li>
         </ul>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Print Button -->
+<button class="print-button" onclick="window.print()">
+  <i class="fas fa-print"></i> Print CV
+</button>
+
+<script>
+  // Smooth scroll behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Add keyboard shortcut for printing (Ctrl+P)
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'p') {
+      e.preventDefault();
+      window.print();
+    }
+  });
+</script>
 </body>
 </html>
-
